@@ -1,3 +1,3 @@
 def call(){
-  sh 'mv varify -DskipUnitTest'
+  sh 'mvn varify -DskipUnitTests'
 }
