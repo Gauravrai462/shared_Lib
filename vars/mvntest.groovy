@@ -1,3 +1,3 @@
 def call(Map stageParams){
-    sh 'mvn test'
+    sh 'mvn clean install'
 }
