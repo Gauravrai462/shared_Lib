@@ -6,7 +6,7 @@ def call(credentialsId) {
           sh 'mvn clean package sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
       }
-    }
+    
 
 /*def call(credentialsId){
 
