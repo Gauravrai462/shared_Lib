@@ -1,4 +1,4 @@
-def call('credentialsId') {
+def call(credentialsId) {
       environment {
         SONAR_URL = "http://172.17.0.1:9000"
       }
