@@ -16,7 +16,8 @@
 
 
 def call(credentialsId){
-  withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-  sh ' mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url="http://192.168.1.4:9000"'
-  }
+
+    withSonarQubeEnv(credentialsId: credentialsId) {
+         sh 'mvn clean package sonar:sonar'
+    }
 }
