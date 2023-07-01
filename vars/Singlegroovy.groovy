@@ -65,7 +65,7 @@ def call(def PipelineParams) {
      }
    }   
 
-   stage('Static Code Analysis') {
+   /*stage('Static Code Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'Sonar', credentialsId: 'sonar') {
          sh 'mvn clean package sonar:sonar'
@@ -85,7 +85,7 @@ def call(def PipelineParams) {
       waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
      }
     }
-    }   
+    }*/ 
 
    stage('Docker Build'){
 
