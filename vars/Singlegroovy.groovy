@@ -90,7 +90,7 @@ def call(def PipelineParams) {
    stage('Docker Build'){
 
      steps{
-          sh "docker build -t ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION} ."
+          sh "docker build -t ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG} ."
         
       } 
     }  
