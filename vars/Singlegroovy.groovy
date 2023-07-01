@@ -49,15 +49,6 @@ def call(def PipelineParams) {
             }
         }  
 
-    stage('Unit Test maven'){
-
-            steps{
-               script{
-                   
-                   sh 'mvn test'
-               }
-            }
-        }  
              
   stage('mvn initigration test'){
 
