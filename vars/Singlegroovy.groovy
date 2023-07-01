@@ -121,7 +121,7 @@ def call(def PipelineParams) {
      steps{
         script{
             sh """
-             docker rmi ${DOCKER_IMAGE}:${IMAGE_VERSION}
+             docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG}
              
           """
         }
