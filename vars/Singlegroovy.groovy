@@ -90,7 +90,7 @@ def call(def PipelineParams) {
    stage('Docker Build'){
 
      steps{
-          sh 'docker build -t ${DOCKER_IMAGE} .'
+          sh "docker build -t ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION} ."
         
       } 
     }  
@@ -100,7 +100,7 @@ def call(def PipelineParams) {
      steps{
         script{
             sh """   
-              trivy image "${DOCKER_IMAGE}" > scan.txt
+              trivy image "${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}" > scan.txt
               cat scan.txt
             """
         }
@@ -111,7 +111,7 @@ def call(def PipelineParams) {
             steps {
                 withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_TOKEN'
-                    sh 'docker push $DOCKER_IMAGE'
+                    sh 'docker push ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}'
                 }
             }
         }
@@ -121,7 +121,7 @@ def call(def PipelineParams) {
      steps{
         script{
             sh """
-             docker rmi ${DOCKER_IMAGE}
+             docker rmi ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}
              
           """
         }
