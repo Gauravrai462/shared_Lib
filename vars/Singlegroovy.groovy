@@ -7,7 +7,7 @@ def call(def PipelineParams) {
 
       GIT_REPO="${PipelineParams.GIT_REPO}"
       BRANCH="${PipelineParams.BRANCH}"
-      DOCKER_IMAGE = "${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER}"
+      DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
       DOCKER_TOKEN= "jen-doc"
       DOCKER_USERNAME= "raigaurav95"
       DOCKER_REGISTRY= "https://hub.docker.com"
