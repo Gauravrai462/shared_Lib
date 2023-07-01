@@ -100,7 +100,7 @@ def call(def PipelineParams) {
      steps{
         script{
             sh """   
-              trivy image "${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}" > scan.txt
+              trivy image "${DOCKER_IMAGE}" > scan.txt
               cat scan.txt
             """
         }
@@ -111,7 +111,7 @@ def call(def PipelineParams) {
             steps {
                 withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_TOKEN'
-                    sh 'docker push ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}'
+                    sh 'docker push ${DOCKER_IMAGE}'
                 }
             }
         }
