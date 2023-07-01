@@ -11,7 +11,7 @@ def call(def PipelineParams) {
       DOCKER_TOKEN= "jen-doc"
       DOCKER_USERNAME= "raigaurav95"
       DOCKER_REGISTRY= "https://hub.docker.com"
-      DOCKER_TAG= "raigaurav95/test:"
+      DOCKER_TAG= "raigaurav95/test"
       IMAGE_VERSION= "${OLD_BUILD_NUMBER}"
       SONAR_URL = "http://172.17.0.1:9000"
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
