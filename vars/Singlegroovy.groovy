@@ -90,14 +90,8 @@ def call(def PipelineParams) {
    stage('Docker Build'){
 
      steps{
-        script{
-            sh """
-             docker build -t $DOCKER_IMAGE .
-             //docker image build -t ${hubUser}/${project} . 
-             //docker image tag ${hubUser}/${project} ${hubUser}/${project}:${ImageTag}
-             //docker image tag ${hubUser}/${project} ${hubUser}/${project}:latest
-          """
-        }
+          sh 'docker build -t ${DOCKER_IMAGE} .'
+        
       } 
     }  
 
