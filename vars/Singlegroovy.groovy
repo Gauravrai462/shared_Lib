@@ -107,19 +107,14 @@ def call(def PipelineParams) {
       } 
     }   
 
-   stage('Docker Push'){
-
-     steps{
-        script{
-            withCredentials([string(credentialsId: 'jen-doc', variable: 'jen-doc', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
-            sh """
-              docker login -u raigaurav95 -p  Gaurav@12,
-              docker push ${DOCKER_IMAGE}
-            """
+   stage('Push Docker Image') {
+            steps {
+                withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_TOKEN'
+                    sh 'docker push $DOCKER_IMAGE'
+                }
+            }
         }
-      } 
-    }   
-   }  
 
   stage('Docker clean'){
 
