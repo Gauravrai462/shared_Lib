@@ -113,7 +113,7 @@ def call(def PipelineParams) {
         script{
             withCredentials([string(credentialsId: 'jen-doc', variable: 'jen-doc', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
             sh """
-              docker login -u ${DOCKER_USERNAME} -p ${DOCKER_TOKEN},
+              docker login -u raigaurav95 -p  Gaurav@12,
               docker push ${DOCKER_IMAGE}
             """
         }
