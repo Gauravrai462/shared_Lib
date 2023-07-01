@@ -1,7 +1,7 @@
 def call(def PipelineParams) {
   pipeline{
 
-    agent none
+    agent any
 
     environment{
 
