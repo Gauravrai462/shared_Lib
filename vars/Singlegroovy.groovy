@@ -1,4 +1,4 @@
-def call(def PipelineParams){
+def call(def PipelineParams) {
   pipeline{
 
     agent none
@@ -19,7 +19,7 @@ def call(def PipelineParams){
     }
     options { 
             disableConcurrentBuilds() 
-      {
+    }
     stages{
 
       stage('clean'){
@@ -133,7 +133,8 @@ def call(def PipelineParams){
             """
         }
       } 
-    }    
+    }   
+   }  
 
   stage('Docker clean'){
 
@@ -149,8 +150,8 @@ def call(def PipelineParams){
 
 
       
-    }  
+     }  
     
-  }
+    }
  
-}
+  }
