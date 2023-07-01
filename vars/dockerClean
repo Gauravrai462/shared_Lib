@@ -1,0 +1,8 @@
+def call(String project, String ImageTag, String hubUser){
+    
+     sh """   
+      Docker rmi ${hubUser}/${project}:latest 
+  
+     """
+ }
+  
