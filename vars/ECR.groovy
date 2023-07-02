@@ -10,8 +10,8 @@ def call (def pipelineParams){
       //AWS_REGION="${pipeline.Params.AWS_REGION}"
       //AWS_ACCOUNT="${pipelineParams.AWS_ACCOUNT}"
       //ECR_REPO="${pipelineParams.ECR_REPO}"
-      //ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
-      //SECRET_KEY = credentials('AWS_SECRET_KEY_ID')
+      ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
+      SECRET_KEY = credentials('AWS_SECRET_KEY_ID')
       
         
     }
