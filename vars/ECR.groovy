@@ -111,7 +111,7 @@ def call (def pipelineParams){
      steps{
         script{
             sh """
-             docker rmi ${env.DOCKER_REGISTRY}/${env.DOCKER_TAG}:${IMAGE_VERSION}
+             docker rmi 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest 
              
           """
         }
