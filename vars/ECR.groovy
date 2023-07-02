@@ -1,15 +1,15 @@
-def call (def pipelineParams){
+def call (def PipelineParams){
 
   pipeline{
 
     agent any
 
     environment {
-      GIT_REPO="${pipelineParams.GIT_REPO}"
-      BRANCH="${pipelineParams.BRANCH}"
-      AWS_REGION="${pipeline.Params.AWS_REGION}"
-      DOCKER_REGISTRY="${pipelineParams.DOCKER_REGISTRY}"
-      DOCKER_TAG="${pipelineParams.DOCKER_TAG}"
+      GIT_REPO="${PipelineParams.GIT_REPO}"
+      BRANCH="${PipelineParams.BRANCH}"
+      AWS_REGION="${PipelineParams.AWS_REGION}"
+      DOCKER_REGISTRY="${PipelineParams.DOCKER_REGISTRY}"
+      DOCKER_TAG="${PipelineParams.DOCKER_TAG}"
       BUILD_NUMBER="${BUILD_NUMBER}"
       //ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
       //SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
