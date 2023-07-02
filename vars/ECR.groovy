@@ -101,7 +101,7 @@ def call (def PipelineParams){
                 export AWS_DEFAULT_REGION=${AWS_REGION}
                 aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
             
-                docker push ${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER}
+                docker push ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION}
                 """
                 }
             }
@@ -112,7 +112,7 @@ def call (def PipelineParams){
      steps{
         script{
             sh """
-             docker rmi ${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER} 
+             docker rmi ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION} 
              
           """
         }
