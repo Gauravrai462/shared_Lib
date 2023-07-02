@@ -68,8 +68,12 @@ def call (def pipelineParams){
 
      steps{
         sh """
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 685793358766.dkr.ecr.us-east-1.amazonaws.com,
+          export AWS_ACCESS_KEY_ID=AKIAZ7LDYGOXELHOTIUR
+          export AWS_SECRET_ACCESS_KEY=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
+          export AWS_DEFAULT_REGION=us-east-1
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 685793358766.dkr.ecr.us-east-1.amazonaws.com
           sh docker build -t java .
+          docker tag java:latest 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest
           """
             
         
@@ -95,7 +99,7 @@ def call (def pipelineParams){
                 export AWS_SECRET_ACCESS_KEY=/ZWlzUIAjU0sH/YPcFrHy9xqj0Vmk0988dYf4BY1
                 export AWS_DEFAULT_REGION=us-east-1
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 685793358766.dkr.ecr.us-east-1.amazonaws.com,
-                docker tag java:latest 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest,
+            
                 docker push 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest 
                 """
                 }
