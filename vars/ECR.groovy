@@ -70,8 +70,8 @@ def call (def PipelineParams){
 
      steps{
         sh """
-          export AWS_ACCESS_KEY_ID=AKIAZ7LDYGOXELHOTIUR
-          export AWS_SECRET_ACCESS_KEY=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
+          export AWS_ACCESS_KEY_ID=${aws_credentails}
+          export AWS_SECRET_ACCESS_KEY=${aws_credentails}
           export AWS_DEFAULT_REGION=${AWS_REGION}
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
           docker build -t ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION} .
