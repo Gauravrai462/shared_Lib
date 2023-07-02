@@ -7,9 +7,10 @@ def call (def pipelineParams){
     environment {
       GIT_REPO="${pipelineParams.GIT_REPO}"
       BRANCH="${pipelineParams.BRANCH}"
-      //AWS_REGION="${pipeline.Params.AWS_REGION}"
-      //AWS_ACCOUNT="${pipelineParams.AWS_ACCOUNT}"
-      //ECR_REPO="${pipelineParams.ECR_REPO}"
+      AWS_REGION="${pipeline.Params.AWS_REGION}"
+      DOCKER_REGISTRY="${pipelineParams.DOCKER_REGISTRY}"
+      DOCKER_TAG="${pipelineParams.DOCKER_TAG}"
+      BUILD_NUMBER="${BUILD_NUMBER}"
       //ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
       //SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
       
@@ -70,10 +71,9 @@ def call (def pipelineParams){
         sh """
           export AWS_ACCESS_KEY_ID=AKIAZ7LDYGOXELHOTIUR
           export AWS_SECRET_ACCESS_KEY=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
-          export AWS_DEFAULT_REGION=us-east-1
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 685793358766.dkr.ecr.us-east-1.amazonaws.com
-          docker build -t java .
-          docker tag java:latest 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest
+          export AWS_DEFAULT_REGION=${AWS_REGION}
+          aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+          docker build -t ${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER}
           """
             
         
@@ -97,10 +97,10 @@ def call (def pipelineParams){
               sh """
                 export AWS_ACCESS_KEY_ID=AKIAZ7LDYGOXELHOTIUR
                 export AWS_SECRET_ACCESS_KEY=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
-                export AWS_DEFAULT_REGION=us-east-1
-                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 685793358766.dkr.ecr.us-east-1.amazonaws.com
+                export AWS_DEFAULT_REGION=${AWS_REGION}
+                aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
             
-                docker push 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest 
+                docker push ${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER}
                 """
                 }
             }
@@ -111,7 +111,7 @@ def call (def pipelineParams){
      steps{
         script{
             sh """
-             docker rmi 685793358766.dkr.ecr.us-east-1.amazonaws.com/java:latest 
+             docker rmi ${DOCKER_REGISTRY}/${DOCKER_TAG}:${BUILD_NUMBER} 
              
           """
         }
