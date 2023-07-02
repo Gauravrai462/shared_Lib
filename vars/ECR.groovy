@@ -97,7 +97,7 @@ def call (def pipelineParams){
                 """
                 }
             }
-        }
+        
 
   stage('Docker clean'){
 
