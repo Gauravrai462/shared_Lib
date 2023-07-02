@@ -11,9 +11,9 @@ def call (def PipelineParams){
       DOCKER_REGISTRY="${PipelineParams.DOCKER_REGISTRY}"
       DOCKER_TAG="${PipelineParams.DOCKER_TAG}"
       BUILD_NUMBER="${BUILD_NUMBER}"
-      IMAGE_VERSION= "v_${BUILD_NUMBER}"
-      AWS_ACCESS_KEY_ID = credentials('aws_credentials').AWS_ACCESS_KEY_ID
-      AWS_SECRET_ACCESS_KEY = credentials('aws_credentials').AWS_SECRET_ACCESS_KEY
+      IMAGE_VERSION="v_${BUILD_NUMBER}"
+      AWS_ACCESS_KEY_ID="credentials('aws_credentials').AWS_ACCESS_KEY_ID"
+      AWS_SECRET_ACCESS_KEY="credentials('aws_credentials').AWS_SECRET_ACCESS_KEY"
       
         
     }
