@@ -12,8 +12,8 @@ def call (def PipelineParams){
       DOCKER_TAG="${PipelineParams.DOCKER_TAG}"
       BUILD_NUMBER="${BUILD_NUMBER}"
       IMAGE_VERSION="v_${BUILD_NUMBER}"
-      AWS_ACCESS_KEY_ID="credentials{'aws_credentials'}.AWS_ACCESS_KEY_ID"
-      AWS_SECRET_ACCESS_KEY="credentials{'aws_credentials'}.AWS_SECRET_ACCESS_KEY"
+      //AWS_ACCESS_KEY_ID="credentials{'aws_credentials'}.AWS_ACCESS_KEY_ID"
+      //AWS_SECRET_ACCESS_KEY="credentials{'aws_credentials'}.AWS_SECRET_ACCESS_KEY"
       
         
     }
@@ -71,8 +71,8 @@ def call (def PipelineParams){
      steps{
         sh """
           
-          export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-          export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+          export AWS_ACCESS_KEY_ID=\${echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"'}
+          export AWS_SECRET_ACCESS_KEY=\${echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"'}
           export AWS_DEFAULT_REGION=${AWS_REGION}
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
           docker build -t ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION} .
@@ -95,8 +95,8 @@ def call (def PipelineParams){
    stage('Push Docker Image') {
             steps {
               sh """
-                export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-                export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+                export AWS_ACCESS_KEY_ID=\${echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"'}
+                export AWS_SECRET_ACCESS_KEY=\${echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"'}
                 export AWS_DEFAULT_REGION=${AWS_REGION}
                 aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
             
