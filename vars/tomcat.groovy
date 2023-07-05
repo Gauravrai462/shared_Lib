@@ -11,10 +11,12 @@ pipeline{
 
       GIT_REPO="${PipelineParams.GIT_REPO}"
       BRANCH="${PipelineParams.BRANCH}"
-      IMAGE_VERSION= "${OLD_BUILD_NUMBER}"
+      IMAGE_VERSION= "v_${BUILD_NUMBER}"
+      BUILD_NUMBER="${BUILD_NUMBER}"
       BUCKET_NAME="${PipelineParams.BUCKET_NAME}"
       SONAR_URL = "http://172.17.0.1:9000"
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
+      
     
   }
 
@@ -42,6 +44,16 @@ pipeline{
      }
      
    }
+
+   stage('upload_to_S3'){
+     steps{
+       withCredentials([file(credentialsId: 'aws_credentials', variable: 'aws')]) {
+        sh """
+            aws s3 cp 
+        }      
+     }
+     
+   } 
 
     
       
