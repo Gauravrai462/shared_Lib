@@ -24,7 +24,7 @@ def call(def PipelineParams) {
      stage('cleanworkspace'){
        steps{
        cleanWs()
-       sh 'printEnv'
+       sh 'printenv()'
       }
     }
     stage('Git Checkout'){
