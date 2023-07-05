@@ -21,12 +21,11 @@ def call(def PipelineParams) {
   }
    stages{
 
-     stage('cleanworkspace'){
-       steps{
-       cleanWs()
-       sh 'printenv()'
+     stage('clean'){
+        steps{
+         cleanWs()
+        }
       }
-    }
     stage('Git Checkout'){
                  
             steps{
