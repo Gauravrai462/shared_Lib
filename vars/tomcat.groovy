@@ -31,15 +31,15 @@ pipeline{
       sh 'printEnv'
       }
     }
-
-   stage('checkout'){
-    step{
-      gitchekout{
-        branch:"${BRANCH}",
-        url: "${GIT_REPO}"  
-      }
-    }
-  } 
+   stage('Git Checkout'){
+                 
+            steps{
+            gitcheckout(
+                branch: "${BRANCH}",
+                url: "${GIT_REPO}"
+            )
+          }
+        }
 
   stage('maven-build'){
      steps{
