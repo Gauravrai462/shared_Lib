@@ -1,4 +1,4 @@
-def call (call pipelineParams) {
+def call (call PipelineParams) {
 pipeline{
 
   agent any
@@ -16,6 +16,9 @@ pipeline{
       BUCKET_NAME="${PipelineParams.BUCKET_NAME}"
       SONAR_URL = "http://172.17.0.1:9000"
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
+      PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
+      REGION="${PipelineParams.REGION}"
+      
       
     
   }
@@ -49,7 +52,7 @@ pipeline{
      steps{
        withCredentials([file(credentialsId: 'aws_credentials', variable: 'aws')]) {
         sh """
-            aws s3 cp 
+            aws s3 cp /var/lib/jenkins/workspace/${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
         }      
      }
      
