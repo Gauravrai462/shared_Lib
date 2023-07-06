@@ -49,8 +49,8 @@ def call(def PipelineParams) {
      steps{
        
         sh """
-            export AWS_ACCESS_KEY_ID: "AKIAZ7LDYGOXLCHPLLWT",
-            export AWS_SECRET_ACCESS_KEY: "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"
+            export AWS_ACCESS_KEY_ID= "AKIAZ7LDYGOXLCHPLLWT",
+            export AWS_SECRET_ACCESS_KEY= "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"
             export AWS_DEFAULT_REGION=${REGION}
             aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
           """
