@@ -18,7 +18,7 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
-      AWS_ACCESS_KEY_ID= = credentials('AKIAZ7LDYGOXLCHPLLWT')
+      AWS_ACCESS_KEY_ID= credentials('AKIAZ7LDYGOXLCHPLLWT')
       AWS_SECRET_ACCESS_KEY= credentials('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')
   }
    stages{
