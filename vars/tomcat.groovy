@@ -18,8 +18,8 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
-      AWS_ACCESS_KEY_ID= credentials('AKIAZ7LDYGOXLCHPLLWT')
-      AWS_SECRET_ACCESS_KEY= credentials('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')
+      AWS_ACCESS_KEY_ID= credentials('')
+      AWS_SECRET_ACCESS_KEY= credentials('')
   }
    stages{
 
@@ -49,8 +49,8 @@ def call(def PipelineParams) {
      steps{
        
         sh """
-            /*export AWS_ACCESS_KEY_ID= "AKIAZ7LDYGOXLCHPLLWT"
-            export AWS_SECRET_ACCESS_KEY= "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"
+            /*export AWS_ACCESS_KEY_ID= 
+            export AWS_SECRET_ACCESS_KEY=
             export AWS_DEFAULT_REGION=${REGION}*/
             aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
           """
