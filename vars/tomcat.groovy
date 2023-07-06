@@ -18,6 +18,8 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
+      AWS_ACCESS_KEY_ID="${PipelineParams.AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY="${PipelineParams.AWS_SECRET_ACCESS_KEY}"
   }
    stages{
 
@@ -45,11 +47,14 @@ def call(def PipelineParams) {
 
    stage('upload_to_S3'){
      steps{
-       withCredentials([file(credentialsId: 'aws_credentials', variable: 'aws')]) {
+       
         sh """
+            export AWS_ACCESS_KEY_ID:"${AWS_SECRET_ACCESS_KEY}",
+            export AWS_SECRET_ACCESS_KEY=:"${AWS_SECRET_ACCESS_KEY}",
+            export AWS_DEFAULT_REGION: "${AWS_REGION}"
             aws s3 cp /var/lib/jenkins/workspace/${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
           """
-        }      
+           
      }
      
    } 
