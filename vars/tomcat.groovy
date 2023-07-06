@@ -16,7 +16,7 @@ def call(def PipelineParams) {
       BUCKET_NAME="${PipelineParams.BUCKET_NAME}"
       SONAR_URL = "http://172.17.0.1:9000"
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
-      PROJECT_NAME="${PipelineParams.JOB}"
+      PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
       AWS_ACCESS_KEY_ID="${PipelineParams.AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY="${PipelineParams.AWS_SECRET_ACCESS_KEY}"
