@@ -51,7 +51,7 @@ def call(def PipelineParams) {
         sh """
             export AWS_ACCESS_KEY_ID:"${AWS_SECRET_ACCESS_KEY}",
             export AWS_SECRET_ACCESS_KEY=:"${AWS_SECRET_ACCESS_KEY}",
-            export AWS_DEFAULT_REGION: "${AWS_REGION}"
+            export AWS_DEFAULT_REGION: "${REGION}"
             aws s3 cp /var/lib/jenkins/workspace/${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
           """
            
