@@ -86,8 +86,7 @@ def call(def PipelineParams) {
       
       steps {
         script {
-          // Install AWS CLI (if not already installed)
-          sh 'pip install awscli'
+          
 
           // Upload the artifact to S3
           sh 'aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}'
