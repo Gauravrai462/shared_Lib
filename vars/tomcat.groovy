@@ -80,7 +80,7 @@ def call(def PipelineParams) {
           '''
           
         }
-      }*/
+      }
   
     stage('Upload to S3') {
       
@@ -93,7 +93,7 @@ def call(def PipelineParams) {
           
         }
       }
-    }
+    }*/
   
 
 
