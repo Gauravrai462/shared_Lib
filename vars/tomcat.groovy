@@ -55,10 +55,10 @@ def call(def PipelineParams) {
        
             sh '''
             aws_credentials=$(aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role --role-session-name "AWSCLI-Session" --output json)
-            //withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')])
+            withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')])
             export AWS_ACCESS_KEY_ID=\$(echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"')
             export AWS_SECRET_ACCESS_KEY=\$(echo $aws_credentials|jq '.Credentials.SecretAccessKey'|tr -d '"')*/
-            aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
+            //aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
             '''
            
      }
