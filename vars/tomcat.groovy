@@ -63,16 +63,18 @@ def call(def PipelineParams) {
     stage('Assume IAM Role') {
       steps {
         withAWS(credentials: 'aws-credentials') {
-          sh "aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role  --role-session-name JenkinsSession --output json > aws-credentials.json"
+          sh '''
+          aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role  --role-session-name JenkinsSession --output json > aws-credentials.json
           withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')]) {
-            sh "export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' aws-credentials.json)"
-            sh "export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' aws-credentials.json)"
-            sh "export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)"
-            sh "aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}"
+          export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' aws-credentials.json)
+          export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' aws-credentials.json)
+          export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)
+          aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
+          '''
           }
         }
       }
-    }
+    
   
     
      }
