@@ -85,7 +85,7 @@ def call(def PipelineParams) {
       environment {
         AWS_ACCESS_KEY_ID = credentials('AKIAZ7LDYGOXPVXO7ASK')
         AWS_SECRET_ACCESS_KEY = credentials('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')
-        AWS_DEFAULT_REGION = ${REGION}
+       
       }
       steps {
         script {
