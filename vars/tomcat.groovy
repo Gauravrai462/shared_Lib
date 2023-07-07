@@ -62,7 +62,7 @@ def call(def PipelineParams) {
 
     stage('Assume IAM Role') {
       steps {
-        withAWS(credentials: 'aws-credentials') {
+        
           sh '''
           aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role  --role-session-name JenkinsSession --output json > aws-credentials.json
           withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')]) {
@@ -71,7 +71,7 @@ def call(def PipelineParams) {
           export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)
           aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
           '''
-          }
+          
         }
       }
     
