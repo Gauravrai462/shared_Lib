@@ -19,7 +19,7 @@ def call(def PipelineParams) {
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
       AWS_ACCESS_KEY_ID = "KIAZ7LDYGOXPVXO7ASK"
-      AWS_SECRET_ACCESS_KEY = "+I4yOCm4mp4KLBfUDvaQdZvYPMmD9eks9f2jcguw"
+      AWS_SECRET_ACCESS_KEY = "I4yOCm4mp4KLBfUDvaQdZvYPMmD9eks9f2jcguw"
        
   }
    stages{
