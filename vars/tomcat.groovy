@@ -18,8 +18,9 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
-      //AWS_ACCESS_KEY_ID= credentials('')
-      //AWS_SECRET_ACCESS_KEY= credentials('')
+      AWS_ACCESS_KEY_ID = "KIAZ7LDYGOXPVXO7ASK"
+      AWS_SECRET_ACCESS_KEY = "+I4yOCm4mp4KLBfUDvaQdZvYPMmD9eks9f2jcguw"
+       
   }
    stages{
 
@@ -82,11 +83,7 @@ def call(def PipelineParams) {
       }*/
   
     stage('Upload to S3') {
-      environment {
-        AWS_ACCESS_KEY_ID = credentials('AKIAZ7LDYGOXPVXO7ASK')
-        AWS_SECRET_ACCESS_KEY = credentials('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')
-       
-      }
+      
       steps {
         script {
           // Install AWS CLI (if not already installed)
