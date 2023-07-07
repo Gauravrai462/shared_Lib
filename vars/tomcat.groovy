@@ -76,7 +76,7 @@ def call(def PipelineParams) {
           export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' aws-credentials.json)
           export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' aws-credentials.json)
           export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)
-          aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}
+          aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}
           '''
           
         }
@@ -89,7 +89,7 @@ def call(def PipelineParams) {
           
 
           // Upload the artifact to S3
-          sh 'aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}'
+          sh 'aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}'
           
         }
       }
