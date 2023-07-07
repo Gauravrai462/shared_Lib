@@ -45,7 +45,7 @@ def call(def PipelineParams) {
      
    }
    /*stage('install aws cli') {
-        sh 'aws configure'
+        sh 'pip install awscli'
         
      
    }*/
@@ -80,6 +80,27 @@ def call(def PipelineParams) {
           
         }
       }*/
+  
+    stage('Upload to S3') {
+      environment {
+        AWS_ACCESS_KEY_ID = credentials('AKIAZ7LDYGOXPVXO7ASK')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
+        AWS_DEFAULT_REGION = ${REGION}
+      }
+      steps {
+        script {
+          // Install AWS CLI (if not already installed)
+          sh 'pip install awscli'
+
+          // Upload the artifact to S3
+          sh 'aws s3 cp ${PROJECT_NAME} s3://${BUCKET_NAME} --region ${REGION}'
+          
+        }
+      }
+    }
+  }
+}
+
     
   
     
