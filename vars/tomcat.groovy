@@ -42,7 +42,7 @@ def call(def PipelineParams) {
    stage('maven-build'){
       steps{
         
-        sh 'mvn -B -DskipTests clean package'
+        sh 'mvn clean install'
      }
      
    }
