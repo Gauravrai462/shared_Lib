@@ -51,7 +51,7 @@ def call(def PipelineParams) {
      
    }*/
 
-   /*stage('upload_to_S3'){
+   stage('upload_to_S3'){
        steps{
        
             sh '''
@@ -67,7 +67,7 @@ def call(def PipelineParams) {
    }
 
 
-    stage('Assume IAM Role') {
+    /*stage('Assume IAM Role') {
       steps {
         
           sh '''
@@ -80,7 +80,7 @@ def call(def PipelineParams) {
           '''
           
         }
-      }*/
+      }
   
     stage('Upload to S3') {
       
@@ -93,7 +93,7 @@ def call(def PipelineParams) {
           
         }
       }
-    }
+    }*/
   
 
 
