@@ -20,6 +20,7 @@ def call(def PipelineParams) {
       REGION="${PipelineParams.REGION}"  
       //AWS_ACCESS_KEY_ID= credentials('jenkins-aws-access-key-id')
       //AWS_SECRET_ACCESS_KEY= credentials('jenkins-aws-secret-key')
+      PATH="${PipelineParams.PATH}"
        
   }
    stages{
@@ -45,11 +46,7 @@ def call(def PipelineParams) {
      }
      
    }
-   /*stage('install aws cli') {
-        sh 'pip install awscli'
-        
-     
-   }*/
+
 
   stage('upload_to_S3'){
        steps{
@@ -65,39 +62,12 @@ def call(def PipelineParams) {
      
    }
 
+   stage('uploade to ec2') {
 
-    /*stage('Assume IAM Role') {
-      steps {
-        
-          sh '''
-          aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role  --role-session-name "AWSCLI-Session" --output json > aws-credentials.json
-          export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' aws-credentials.json)
-          export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' aws-credentials.json)
-          export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)
-          aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}
-          '''
-          
-        }
-      }*/
-  
-    /*stage('Upload to S3') {
-      
-      steps {
-        script {
-          
-          sh 'aws configure set region ${REGION}'
-          // Upload the artifact to S3
-          sh 'aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}'
-          
-        }
-      }
-    }*/
-  
+     sh 'aws s3 cp s3://${BUCKET_NAME}/vprofile-v2.war  ${PATH}  --region ${REGION}'
+     
+   }  
 
-
-    
-  
-    
      }
     
     }
