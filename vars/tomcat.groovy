@@ -42,7 +42,8 @@ def call(def PipelineParams) {
 
    stage('maven-build'){
       steps{
-        sh 'mvn clean install'
+        sh 'mvn clean package'
+        sh 'mvn install'
      }
      
    }
