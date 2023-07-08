@@ -18,8 +18,8 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
-      //AWS_ACCESS_KEY_ID = 
-      //AWS_SECRET_ACCESS_KEY = 
+      AWS_ACCESS_KEY_ID= credentials('jenkins-aws-access-key-id')
+      AWS_SECRET_ACCESS_KEY= credentials('jenkins-aws-secret-key')
        
   }
    stages{
@@ -64,7 +64,7 @@ def call(def PipelineParams) {
            
      }
      
-   }*/
+   }
 
 
     stage('Assume IAM Role') {
@@ -80,20 +80,20 @@ def call(def PipelineParams) {
           '''
           
         }
-      }
+      }*/
   
-    /*stage('Upload to S3') {
+    stage('Upload to S3') {
       
       steps {
         script {
           
-
+          sh 'aws configure set region ${REGION}'
           // Upload the artifact to S3
           sh 'aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}'
           
         }
       }
-    }*/
+    }
   
 
 
