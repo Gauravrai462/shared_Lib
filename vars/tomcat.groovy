@@ -51,7 +51,7 @@ def call(def PipelineParams) {
      
    }*/
 
-   stage('upload_to_S3'){
+  /*stage('upload_to_S3'){
        steps{
        
             sh '''
@@ -64,15 +64,15 @@ def call(def PipelineParams) {
            
      }
      
-   }
+   }*/
 
 
-    /*stage('Assume IAM Role') {
+    stage('Assume IAM Role') {
       steps {
         
           sh '''
           aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role  --role-session-name "AWSCLI-Session" --output json > aws-credentials.json
-          withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')]) {
+          //withCredentials([file(credentialsId: 'aws-credentials', variable: 'AWS_CREDENTIALS_JSON')]) {
           export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' aws-credentials.json)
           export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' aws-credentials.json)
           export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' aws-credentials.json)
@@ -82,7 +82,7 @@ def call(def PipelineParams) {
         }
       }
   
-    stage('Upload to S3') {
+    /*stage('Upload to S3') {
       
       steps {
         script {
