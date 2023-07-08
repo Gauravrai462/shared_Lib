@@ -18,8 +18,8 @@ def call(def PipelineParams) {
       SONAR_TOKEN= "SONAR_AUTH_TOKEN"
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
-      AWS_ACCESS_KEY_ID= credentials('jenkins-aws-access-key-id')
-      AWS_SECRET_ACCESS_KEY= credentials('jenkins-aws-secret-key')
+      //AWS_ACCESS_KEY_ID= credentials('jenkins-aws-access-key-id')
+      //AWS_SECRET_ACCESS_KEY= credentials('jenkins-aws-secret-key')
        
   }
    stages{
