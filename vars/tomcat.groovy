@@ -62,14 +62,14 @@ def call(def PipelineParams) {
      
    }
 
-  stage('uploade to ec2') {
+  /*stage('uploade to ec2') {
      steps{
 
       sh 'aws s3 cp s3://${BUCKET_NAME}/vprofile-v2.war  ${PATH}  --region ${REGION}'
 
      }
      
-   }  
+   }*/
 
      }
     
