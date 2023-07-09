@@ -19,7 +19,7 @@ def call(def PipelineParams) {
       PROJECT_NAME="${PipelineParams.PROJECT_NAME}"
       REGION="${PipelineParams.REGION}"  
       //PATH="${PipelineParams.PATH}"
-      //WAR="${PipelineParams.WAR}"
+      FILE="${PipelineParams.FILE}"
        
   }
    stages{
@@ -53,7 +53,7 @@ def call(def PipelineParams) {
             aws_credentials=$(aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role --role-session-name "AWSCLI-Session" --output json ) 
             export AWS_ACCESS_KEY_ID=\$(echo $aws_credentials|jq '.Credentials.AccessKeyId')
             export AWS_SECRET_ACCESS_KEY=\$(echo $aws_credentials|jq '.Credentials.SecretAccessKey')
-            aws s3 cp target/vprofile-v2.war s3://${BUCKET_NAME} --region ${REGION}
+            aws s3 cp target/${FILE} s3://${BUCKET_NAME} --region ${REGION}
             '''
            
      }
