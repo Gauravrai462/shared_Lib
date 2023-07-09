@@ -40,10 +40,10 @@ def call(def PipelineParams) {
        }
 
     stage('Maven_Build'){
-      steps{
-       sh "mvn test"
+     steps{
+       sh 'mvn clean install'
      }
-   }  
+   }    
 
 
    stage('upload_to_S3'){
