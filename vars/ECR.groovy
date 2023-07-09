@@ -70,10 +70,9 @@ def call (def PipelineParams){
 
      steps{
         sh """
-          
-          export AWS_ACCESS_KEY_ID=$(echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"')
-          export AWS_SECRET_ACCESS_KEY=$(echo $aws_credentials|jq '.Credentials.AccessKeyId'|tr -d '"')
-          export AWS_DEFAULT_REGION=${AWS_REGION}
+          aws_credentials=$(aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role --role-session-name "AWSCLI-Session" --output json ) 
+          export AWS_ACCESS_KEY_ID=\$(echo $aws_credentials|jq '.Credentials.AccessKeyId')
+          export AWS_SECRET_ACCESS_KEY=\$(echo $aws_credentials|jq '.Credentials.SecretAccessKey')
           aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
           docker build -t ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION} .
           """ 
