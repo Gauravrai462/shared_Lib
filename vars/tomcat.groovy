@@ -39,16 +39,15 @@ def call(def PipelineParams) {
           }
         }
 
-   stage('maven-build'){
+    stage('maven-build'){
       steps{
-        
         sh 'mvn clean install'
      }
      
    }
 
 
-  stage('upload_to_S3'){
+   stage('upload_to_S3'){
        steps{
        
             sh '''
@@ -62,7 +61,7 @@ def call(def PipelineParams) {
      
    }
 
-  /*stage('uploade to ec2') {
+   /*stage('uploade to ec2') {
      steps{
 
       sh 'aws s3 cp s3://${BUCKET_NAME}/vprofile-v2.war  ${PATH}  --region ${REGION}'
