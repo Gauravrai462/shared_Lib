@@ -37,14 +37,13 @@ def call(def PipelineParams) {
                 url: "${GIT_REPO}"
             )
           }
-        }
+       }
 
-    stage('maven-build'){
+    stage('Maven_Build'){
       steps{
-        sh 'mvn clean install'
+       sh 'mvn clean install'
      }
-     
-   }
+   }  
 
 
    stage('upload_to_S3'){
