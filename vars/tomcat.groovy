@@ -64,9 +64,9 @@ def call(def PipelineParams) {
      steps{
 
       sh '''
-       sudo ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
-       sudo scp -i Downloads/vprofile.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
-       sudo ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
+       sudo -S ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
+       sudo -S scp -i Downloads/vprofile.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
+       sudo -S ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
 
