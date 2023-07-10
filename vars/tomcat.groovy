@@ -77,7 +77,7 @@ def call(def PipelineParams) {
 
       sh '''
        
-        scp -i master-key.pem /var/lib/jenkins/workspace/JAVA ubuntu@43.204.24.104:/tmp 
+        sudo scp -i Downloads/vprofile.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
         ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
