@@ -77,7 +77,7 @@ def call(def PipelineParams) {
 
       sh '''
        
-        scp -i master-key.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
+        scp -i master-key.pem /target/${FILE} ubuntu@43.204.24.104 /var/lib/tomcat9/webapps/ROOT.war
         ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
