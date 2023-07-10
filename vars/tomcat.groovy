@@ -72,7 +72,7 @@ def call(def PipelineParams) {
 
    stage('uploade to ec2') {
      steps{
-       withCredentials([sshUserPrivateKey(credentialsId: 'Tomcat', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+      
 
       sh '''
         ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
@@ -80,7 +80,7 @@ def call(def PipelineParams) {
         ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
-       }
+       
      }
      
    }
