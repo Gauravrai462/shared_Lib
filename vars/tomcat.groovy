@@ -46,7 +46,7 @@ def call(def PipelineParams) {
    }    
 
 
-   stage('upload_to_S3'){
+   /*stage('upload_to_S3'){
        steps{
        
             sh '''
@@ -58,7 +58,7 @@ def call(def PipelineParams) {
            
      }
      
-   }
+   }*/
 
    stage('aws_access_Key'){
      steps{
@@ -77,8 +77,8 @@ def call(def PipelineParams) {
 
       sh '''
        
-        scp -o StrictHostKeyChecking=no Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
-        ssh -o StrictHostKeyChecking=no ubuntu@43.204.24.104 'systemctl restart tomcat9'
+        scp -master-key.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
+        ssh master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
        
