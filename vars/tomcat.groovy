@@ -77,8 +77,8 @@ def call(def PipelineParams) {
 
       sh '''
        
-        scp -master-key.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
-        ssh master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
+        scp -i master-key.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
+        ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
        
