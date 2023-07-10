@@ -53,21 +53,26 @@ def call(def PipelineParams) {
             aws_credentials=$(aws sts assume-role --role-arn arn:aws:iam::685793358766:role/Jenkins_AWS_role --role-session-name "AWSCLI-Session" --output json ) 
             export AWS_ACCESS_KEY_ID=\$(echo $aws_credentials|jq '.Credentials.AccessKeyId')
             export AWS_SECRET_ACCESS_KEY=\$(echo $aws_credentials|jq '.Credentials.SecretAccessKey')
-            aws s3 cp target/${FILE} s3://${BUCKET_NAME} --region ${REGION}
+            aws s3 cp  s3://${BUCKET_NAME} --region ${REGION}
             '''
            
      }
      
    }
 
-   /*stage('uploade to ec2') {
+   stage('uploade to ec2') {
      steps{
 
-      sh 'aws s3 cp s3://${BUCKET_NAME}/vprofile-v2.war  ${PATH}  --region ${REGION}'
+      sh '''
+       sudo ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
+       sudo scp -i Downloads/vprofile.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
+       sudo ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
+       '''
+
 
      }
      
-   }*/
+   }
 
      }
     
