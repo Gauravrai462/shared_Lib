@@ -75,9 +75,9 @@ def call(def PipelineParams) {
        withCredentials([sshUserPrivateKey(credentialsId: 'Tomcat', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
 
       sh '''
-       sudo ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
-       sudo scp -i master-key.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
-       sudo ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
+        ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
+        scp -i master-key.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
+        ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
        }
