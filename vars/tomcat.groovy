@@ -60,15 +60,16 @@ def call(def PipelineParams) {
      
    }
 
-   /*stage('aws_access_Key'){
+   stage('aws_access_Key'){
      steps{
        sh '''
           aws configure get aws_access_key_id >>master-key.pem
           aws configure get aws_secret_access_key >>master-key.pem
+          '''
 
      }
      
-   }*/  
+   } 
 
    stage('uploade to ec2') {
      steps{
