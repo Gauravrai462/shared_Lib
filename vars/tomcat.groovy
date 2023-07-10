@@ -60,7 +60,7 @@ def call(def PipelineParams) {
      
    }
 
-   stage('aws_access_Key'){
+   /*stage('aws_access_Key'){
      steps{
        sh '''
           aws configure get aws_access_key_id >>master-key.pem
@@ -68,14 +68,14 @@ def call(def PipelineParams) {
 
      }
      
-   }  
+   }*/  
 
    stage('uploade to ec2') {
      steps{
       
 
       sh '''
-        ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
+        //ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl stop tomcat9'
         scp -i master-key.pem /target/${FILE} ubuntu@43.204.24.104 cp target/${FILE} /var/lib/tomcat9/webapps/ROOT.war
         ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
