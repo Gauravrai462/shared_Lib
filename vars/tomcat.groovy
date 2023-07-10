@@ -60,7 +60,7 @@ def call(def PipelineParams) {
      
    }*/
 
-   stage('aws_access_Key'){
+   /*stage('aws_access_Key'){
      steps{
        sh '''
           aws configure get aws_access_key_id >>master-key.pem
@@ -69,7 +69,7 @@ def call(def PipelineParams) {
 
      }
      
-   } 
+   }*/
 
    stage('uploade to ec2') {
      steps{
@@ -77,8 +77,8 @@ def call(def PipelineParams) {
 
       sh '''
        
-        scp -i master-key.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
-        ssh -i master-key.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
+        scp -i Downloads/vprofile.pem  Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
+        ssh -i Downloads/vprofile.pem  ubuntu@43.204.24.104 'systemctl restart tomcat9'
        '''
 
        
