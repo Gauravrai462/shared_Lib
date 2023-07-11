@@ -76,8 +76,8 @@ def call(def PipelineParams) {
         sshagent(['Tomcat']) {
           sh '''
        
-           scp Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
-           ssh  Downloads/vprofile.pem  ubuntu@43.204.24.104 'systemctl restart tomcat9'
+           scp -i Downloads/vprofile.pem Downloads/Dockerfile  ubuntu@43.205.241.220:/tmp
+           ssh -i Downloads/vprofile.pem ubuntu@43.204.24.104 'systemctl restart tomcat9'
            '''
 
         }
